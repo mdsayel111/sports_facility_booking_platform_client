@@ -18,7 +18,7 @@ const Navbar = () => {
         setVisible(true)
     };
     return (
-        <nav className="menuBar sticky bg-white top-0">
+        <nav className="menuBar sticky bg-white top-0 z-50">
             <div className=' flex justify-between lg:w-[90%] w-[95%] mx-auto'>
 
                 {/* logo section */}

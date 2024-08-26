@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import Footer from "./components/mainLayout/footer/Footer"
-import Navbar from "./components/mainLayout/navbar/Navbar"
+import Footer from "./components/app/footer/Footer"
+import Navbar from "./components/app/navbar/Navbar"
 import ThemeProvider from "./themeProvider/ThemeProvider"
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
           {/* outlet */}
           <Outlet />
 
-          {/* footer */}
-          <Footer />
         </div>
+
+        {/* footer */}
+        <Footer />
       </ThemeProvider>
     </>
   )

@@ -63,7 +63,7 @@ const route: TRoute[] = [
     },
     {
         name: "signup",
-        path: "/login",
+        path: "/signup",
         element: <SignUp />
     },
 ]

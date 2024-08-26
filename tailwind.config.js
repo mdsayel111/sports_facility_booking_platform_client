@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         // Configure your color palette here
-        primary: "#FD1E50"
+        primary: "#FD1E50",
+        secondary: "#404040"
       }
     },
   },
