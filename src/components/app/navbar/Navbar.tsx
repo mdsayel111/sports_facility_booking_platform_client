@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className="logo flex justify-center items-center">
                     <NavLink to={"/"}><img className='w-[30px] lg:w-[50px] block' src="/logo.png" alt="" /></NavLink>
                 </div>
-                
+
                 <div className="menuCon py-2 lg:py-0">
                     {/* larger device nav items */}
                     <div className='hidden lg:block'>

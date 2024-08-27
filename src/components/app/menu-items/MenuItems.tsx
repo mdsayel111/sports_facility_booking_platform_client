@@ -1,26 +1,44 @@
 import type { MenuProps } from 'antd';
 import { Button, Menu } from 'antd';
 import { useState } from 'react';
-import route from '../../../route';
-import { getAntDesighnNavItems } from '../../../utils/route';
+import { NavLink } from 'react-router-dom';
+import { adminForbiddenPath, userForbiddenPath } from '../../../constant';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { logout, selectAuth } from '../../../redux/slices/auth-slice';
-import { NavLink } from 'react-router-dom';
+import route from '../../../route';
+import { getAntDesighnNavItems } from '../../../utils';
 
 const MenuItems = ({ mode }: { mode: "horizontal" | "inline" }) => {
-    const [current, setCurrent] = useState("home");
+    const [current, setCurrent] = useState("Home");
 
     const onClick: MenuProps['onClick'] = (e) => {
-        console.log('click ', e);
         setCurrent(e.key);
     };
 
-    let items = getAntDesighnNavItems(route)
 
     // get user data from state
     const auth = useAppSelector(selectAuth)
 
     const dispatch = useAppDispatch()
+
+    // create forbidden path based on role
+    let forbiddenPath: string[];
+
+    // if role === "admin"
+    if (auth.userData.role === "admin") {
+        forbiddenPath = adminForbiddenPath
+    }
+    // else if if role === "user"
+    else if (auth.userData.role === "user") {
+        forbiddenPath = userForbiddenPath
+    }
+    // else
+    else {
+        forbiddenPath = [...userForbiddenPath, ...adminForbiddenPath, "Dashboard"]
+    }
+
+    // get items based on role
+    let items = getAntDesighnNavItems(route, forbiddenPath)
 
     // logout handler
     const handleLogout = () => {

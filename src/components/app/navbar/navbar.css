@@ -77,6 +77,10 @@
   width: 100%;
 }
 
+.ant-menu-root{
+  justify-content: flex-end;
+}
+
 .ant-drawer-body .ant-menu-horizontal {
   border-bottom: none;
 }

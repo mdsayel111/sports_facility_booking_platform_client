@@ -2,10 +2,9 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="bg-secondary">
-
-
-            <footer className="rounded-lg border-t-2 lg:w-[90%] w-[95%] mx-auto">
+        <div className="bg-secondary rounded-t-xl">
+            
+            <footer className=" lg:w-[90%] w-[95%] mx-auto">
                 <div className="w-full mx-auto p-4 md:py-8">
                     <div className="sm:flex sm:items-center sm:justify-between">
                         <a href="https://flowbite.com/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">

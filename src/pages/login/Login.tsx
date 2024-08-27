@@ -25,7 +25,7 @@ const Login = () => {
             // set auth state
             dispatch(setAuth(res.data))
             toast.success(res.data?.message)
-            navigate("/")
+            navigate("/", { replace: true })
         } else {
             const error = res.error as FetchBaseQueryError;
 
@@ -44,7 +44,7 @@ const Login = () => {
                 <Form onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <Button type="primary" className='bg-primary hover:!bg-primary' htmlType="submit">Sign Up</Button>
+                    <Button type="primary" htmlType="submit">Sign Up</Button>
                 </Form>
             </div>
         </div>

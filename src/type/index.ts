@@ -6,3 +6,13 @@ export type TSignUp = {
     role: string;
     password: string;
 }
+
+export type TFacilityData = {
+    _id: string
+    name: string;
+    img: string
+    description: string
+    pricePerHour: number
+    location: string
+    isDeleted: boolean
+} 

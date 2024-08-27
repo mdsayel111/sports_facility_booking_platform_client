@@ -19,7 +19,7 @@ const SignUp = () => {
         const res = await signup({ ...data, role: "user" })
         if (res.data?.success) {
             toast.success(res.data?.message)
-            navigate("/login")
+            navigate("/login", { replace: true })
         } else {
             toast.error(res.data?.message || "Something went wrong")
         }
@@ -34,7 +34,7 @@ const SignUp = () => {
                     <TextInput name="phone" placeholder="Phone" prefix={<MdOutlineLocalPhone className="text-gray-400" />} />
                     <TextInput name="address" placeholder="Address" prefix={<FaRegBuilding className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <Button className='bg-primary hover:!bg-primary' type="primary" htmlType="submit">Sign Up</Button>
+                    <Button type="primary" htmlType="submit">Sign Up</Button>
                 </Form>
             </div>
         </div>

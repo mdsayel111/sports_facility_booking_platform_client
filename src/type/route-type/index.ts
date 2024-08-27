@@ -2,7 +2,7 @@ import { MenuProps } from "antd";
 import { ReactNode } from "react";
 
 export type TRoute = {
-    name: string;
+    name?: string;
     index?: boolean;
     path: string;
     element: ReactNode;

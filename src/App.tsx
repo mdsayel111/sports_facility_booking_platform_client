@@ -7,20 +7,18 @@ function App() {
 
   return (
     <>
-      <ThemeProvider colorPrimary="#FD1E50" colorBgContainer="#ffff">
-        {/* navbar */}
-        <Navbar />
-        <div className="lg:w-[90%] w-[95%] mx-auto">
+      {/* navbar */}
+      <Navbar />
+      <div className="lg:w-[90%] w-[95%] mx-auto">
 
 
-          {/* outlet */}
-          <Outlet />
+        {/* outlet */}
+        <Outlet />
 
-        </div>
+      </div>
 
-        {/* footer */}
-        <Footer />
-      </ThemeProvider>
+      {/* footer */}
+      <Footer />
     </>
   )
 }
