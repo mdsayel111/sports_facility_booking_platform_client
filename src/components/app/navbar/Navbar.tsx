@@ -41,7 +41,7 @@ const Navbar = () => {
                     <Drawer
                         id='drawer'
                         closeIcon={"*"}
-                        title="Basic Drawer"
+                        title="SportsEase"
                         placement="right"
                         closable={false}
                         onClose={onClose}

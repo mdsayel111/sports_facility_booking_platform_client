@@ -12,7 +12,11 @@ const Form = ({ children, className, onSubmit }: TForm) => {
 
     return (
         <FormProvider {...methods}>
-            <form className={className} onSubmit={methods.handleSubmit(onSubmit)}>
+            <form className={className} onSubmit={methods.handleSubmit(async (data) => {
+                await onSubmit(data)
+                methods.reset()
+            })
+            }>
                 {children}
             </form>
         </FormProvider>

@@ -56,15 +56,5 @@ const route: TRoute[] = [
             }
         ]
     },
-    {
-        name: "login",
-        path: "/login",
-        element: <Login />
-    },
-    {
-        name: "signup",
-        path: "/signup",
-        element: <SignUp />
-    },
 ]
 export default route
