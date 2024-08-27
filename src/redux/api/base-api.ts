@@ -10,7 +10,7 @@ const customBaseQuery = async (args: FetchArgs, api: BaseQueryApi, extraOptions:
 
             // If we have a token set in state, let's assume that we should be passing it.
             if (token) {
-                headers.set('token', `Bearer ${token}`)
+                headers.set('authorization', `Bearer ${token}`)
             }
 
             return headers
@@ -28,6 +28,5 @@ const customBaseQuery = async (args: FetchArgs, api: BaseQueryApi, extraOptions:
 export const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery: customBaseQuery,
-    // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
     endpoints: () => ({}),
 })

@@ -10,7 +10,7 @@ export type TSignUp = {
 export type TFacilityData = {
     _id: string
     name: string;
-    img: string
+    img: string | File
     description: string
     pricePerHour: number
     location: string

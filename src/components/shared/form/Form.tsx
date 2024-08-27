@@ -1,21 +1,18 @@
 import { ReactNode } from "react";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, FormProvider, SubmitHandler, useForm, UseFormReturn } from "react-hook-form";
 
 type TForm = {
     children: ReactNode
     className?: string
+    methods: UseFormReturn<FieldValues, any, undefined>
     onSubmit: SubmitHandler<any>
 }
 
-const Form = ({ children, className, onSubmit }: TForm) => {
-    const methods = useForm()
+const Form = ({ children, className, onSubmit, methods }: TForm) => {
 
     return (
         <FormProvider {...methods}>
-            <form className={className} onSubmit={methods.handleSubmit(async (data) => {
-                await onSubmit(data)
-                methods.reset()
-            })
+            <form className={className} onSubmit={methods.handleSubmit(onSubmit)
             }>
                 {children}
             </form>

@@ -1,3 +1,4 @@
+import { TFacilityData } from "../../type";
 import { baseApi } from "./base-api"
 
 export type TGetAllFacilityQueryParams = {
@@ -30,8 +31,20 @@ const extendedApi = baseApi.injectEndpoints({
                     params: paramsObj
                 }
             },
+        }),
+
+        // add facility mutation
+        addFacility: build.mutation({
+            query: (data: TFacilityData) => {
+                console.log(data)
+                return ({
+                    url: '/facility',
+                    method: "POST",
+                    body: data
+                })
+            }
         })
     }),
 })
 
-export const { useGetAllFacilityQuery } = extendedApi
+export const { useGetAllFacilityQuery, useAddFacilityMutation } = extendedApi

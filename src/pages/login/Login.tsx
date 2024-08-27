@@ -9,10 +9,14 @@ import { useLogInMutation } from '../../redux/api/auth-api';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { setAuth } from '../../redux/slices/auth-slice';
 import { useAppDispatch } from '../../redux/hooks';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
     // get signup mutation
     const [login] = useLogInMutation()
+
+    // react hook form methds
+    const methods = useForm()
 
     const navigate = useNavigate()
 
@@ -37,11 +41,12 @@ const Login = () => {
             }
         }
     }
+    
     return (
         <div className="h-[70vh] flex flex-col justify-center items-center">
             <div>
                 <h1 className="text-3xl text-primary font-bold mb-8 text-center">Login</h1>
-                <Form onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
+                <Form methods={methods} onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
                     <Button type="primary" htmlType="submit">Sign Up</Button>
