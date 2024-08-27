@@ -1,5 +1,5 @@
 import { TFacilityData } from "../../type";
-import { baseApi } from "./base-api"
+import { baseApi } from "./base-api";
 
 export type TGetAllFacilityQueryParams = {
     name: string;
@@ -31,6 +31,17 @@ const extendedApi = baseApi.injectEndpoints({
                     params: paramsObj
                 }
             },
+            providesTags: ["facility"]
+        }),
+
+        // get single facility query
+        getSingleFacility: build.query({
+            query: (id: string) => {
+                return {
+                    url: `/facility/${id}`,
+                    method: "GET",
+                }
+            }
         }),
 
         // add facility mutation
@@ -42,9 +53,33 @@ const extendedApi = baseApi.injectEndpoints({
                     method: "POST",
                     body: data
                 })
-            }
+            },
+            invalidatesTags: ["facility"]
+        }),
+
+        // add facility mutation
+        updateFacility: build.mutation({
+            query: (data: TFacilityData) => {
+                return ({
+                    url: `/facility/${data._id}`,
+                    method: "PUT",
+                    body: data
+                })
+            },
+            invalidatesTags: ["facility"]
+        }),
+
+        // delete facility mutation
+        deleteFacility: build.mutation({
+            query: (id: string) => {
+                return ({
+                    url: `/facility/${id}`,
+                    method: "DELETE",
+                })
+            },
+            invalidatesTags: ["facility"]
         })
     }),
 })
 
-export const { useGetAllFacilityQuery, useAddFacilityMutation } = extendedApi
+export const { useGetAllFacilityQuery, useAddFacilityMutation, useDeleteFacilityMutation, useGetSingleFacilityQuery, useUpdateFacilityMutation } = extendedApi

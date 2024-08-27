@@ -24,24 +24,22 @@ const Login = () => {
 
     // onsubmit function to signup
     const onSubmit = async (data: any) => {
-        const res = await login(data)
-        if (res.data?.success) {
-            // set auth state
-            dispatch(setAuth(res.data))
-            toast.success(res.data?.message)
-            navigate("/", { replace: true })
-        } else {
-            const error = res.error as FetchBaseQueryError;
-
-            // Check if the error has data and that data is an object with a message
-            if (error.data && typeof error.data === 'object' && 'message' in error.data) {
-                toast.error((error.data as any).message);
+        try {
+            const res = await login(data)
+            if (res.data?.success) {
+                // set auth state
+                dispatch(setAuth(res.data))
+                toast.success(res.data?.message)
+                navigate("/", { replace: true })
             } else {
-                toast.error("Something went wrong");
+                const error = res.error as FetchBaseQueryError;
+                toast.error((error.data as any).message);
             }
+        } catch (error: any) {
+            toast.error(error.message)
         }
     }
-    
+
     return (
         <div className="h-[70vh] flex flex-col justify-center items-center">
             <div>

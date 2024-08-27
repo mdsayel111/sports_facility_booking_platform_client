@@ -1,16 +1,37 @@
 import React from 'react';
 import { Button, Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
-import { TGetAllFacilityQueryParams, useGetAllFacilityQuery } from '../../redux/api/facility-api';
+import { TGetAllFacilityQueryParams, useDeleteFacilityMutation, useGetAllFacilityQuery } from '../../redux/api/facility-api';
 import { TFacilityData } from '../../type';
 import { NavLink } from 'react-router-dom';
 import Title from '../../components/shared/title/Title';
+import toast from 'react-hot-toast';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 
 
 const FacilityManagement = () => {
     // get all facility
     const { data: allFacility } = useGetAllFacilityQuery({} as TGetAllFacilityQueryParams)
+
+    const [deleteFacility] = useDeleteFacilityMutation()
+
+
+    // handle delete function
+    const handleDelete = async (id: string) => {
+        try {
+            const res = await deleteFacility(id)
+
+            if (res.data?.success) {
+                toast.success(res.data?.message)
+            } else {
+                const error = res.error as FetchBaseQueryError;
+                toast.error((error.data as any).message);
+            }
+        } catch (error: any) {
+            toast.error(error.message)
+        }
+    }
 
     const facilityData = allFacility?.data?.data
 
@@ -20,7 +41,7 @@ const FacilityManagement = () => {
             title: 'Image',
             dataIndex: 'img',
             key: 'img',
-            render: (text) => <a>{text}</a>,
+            render: (text) => <img className='lg:w-52 lg:h-52 min-w-24 h-24' src={text} />,
         },
         {
             title: 'Name',
@@ -44,7 +65,7 @@ const FacilityManagement = () => {
             render: (_, record) => (
                 <Space size="middle">
                     <NavLink to={`/update-facility/${record._id}`}><Button type='primary'>Update</Button></NavLink>
-                    <Button>Delete</Button>
+                    <Button onClick={() => handleDelete(record._id)}>Delete</Button>
                 </Space>
             ),
         },
@@ -69,8 +90,8 @@ const FacilityManagement = () => {
             <div className='flex justify-end mb-4'>
                 <NavLink className="p-5" to={"/add-facility"}><Button type='primary'>Add facility</Button></NavLink>
             </div>
-            <div className='w-full overflow-x-scroll'>
-                <Table columns={columns} dataSource={rowData} pagination={false} />
+            <div className='w-full overflow-x-auto'>
+                <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' />
             </div>
         </div>
     )

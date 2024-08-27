@@ -58,7 +58,6 @@ const route: TRoute[] = [
             {
                 index: true,
                 path: "/dashboard/facility-management",
-                // name: "Facility-Management",
                 element: <Greeting />
             },
             {

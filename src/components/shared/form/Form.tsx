@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import { FieldValues, FormProvider, SubmitHandler, useForm, UseFormReturn } from "react-hook-form";
+import { FormProvider, SubmitHandler, UseFormReturn } from "react-hook-form";
 
 type TForm = {
     children: ReactNode
     className?: string
-    methods: UseFormReturn<FieldValues, any, undefined>
+    methods: UseFormReturn<any, any, undefined>
     onSubmit: SubmitHandler<any>
 }
 
