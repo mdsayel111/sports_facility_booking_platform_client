@@ -15,4 +15,25 @@ export type TFacilityData = {
     pricePerHour: number
     location: string
     isDeleted: boolean
-} 
+}
+
+// type TUser
+export type TUserData = {
+    _id: string
+    name: string
+    email: string
+    role: string
+    phone: string
+    address: string
+}
+
+export type TBookingData = {
+    _id: string
+    date: string
+    startTime: string
+    endTime: string
+    facility: TFacilityData
+    payableAmount: number
+    isBooked: string
+    user: TUserData
+}

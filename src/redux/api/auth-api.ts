@@ -2,7 +2,7 @@ import { TSignUp } from "../../type"
 import { baseApi } from "./base-api"
 
 // inject query in base api
-const extendedApi = baseApi.injectEndpoints({
+const authApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         // signup mutation
         signUp: build.mutation({
@@ -12,6 +12,7 @@ const extendedApi = baseApi.injectEndpoints({
                 body: data
             }),
         }),
+
         // login mutation
         logIn: build.mutation({
             query: (data: Pick<TSignUp, "email" | "password">) => ({
@@ -20,8 +21,16 @@ const extendedApi = baseApi.injectEndpoints({
                 body: data
             }),
         }),
+
+        // create admin mutation
+        createAdmin: build.mutation({
+            query: (data: TSignUp) => ({
+                url: '/auth/create-admin',
+                method: "POST",
+                body: data
+            }),
+        }),
     }),
-    overrideExisting: false,
 })
 
-export const { useSignUpMutation, useLogInMutation } = extendedApi
+export const { useSignUpMutation, useLogInMutation, useCreateAdminMutation } = authApi

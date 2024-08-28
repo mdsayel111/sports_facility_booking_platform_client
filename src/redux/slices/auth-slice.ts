@@ -1,16 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store'
+import { createSlice } from '@reduxjs/toolkit';
+import { TUserData } from '../../type';
+import { RootState } from '../store';
 
-// type TUser
-type TUserData = {
-    _id: string
-    name: string
-    email: string
-    role: string
-    phone: string
-    address: string
-}
+
 // Define a type for the slice state
 interface TAuthState {
     userData: TUserData;

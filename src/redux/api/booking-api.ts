@@ -8,30 +8,15 @@ export type TGetAllFacilityQueryParams = {
 }
 
 // inject query in base api
-const facilityApi = baseApi.injectEndpoints({
+const bookingApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        // get all facility query
-        getAllFacility: build.query({
-            query: (paramsArgs: TGetAllFacilityQueryParams) => {
-                const paramsObj: TGetAllFacilityQueryParams = { page: paramsArgs.page } as TGetAllFacilityQueryParams
-
-                // if name has a value add name in params
-                if (paramsArgs.name) {
-                    paramsObj.name = paramsArgs.name
-                }
-
-                // if name has a value add name in params
-                if (paramsArgs.pricePerHour) {
-                    paramsObj.pricePerHour = paramsArgs.pricePerHour
-                }
-
-                return {
-                    url: '/facility',
-                    method: "GET",
-                    params: paramsObj
-                }
-            },
-            providesTags: ["facility"]
+        // get all booking query
+        getAllBooking: build.query({
+            query: () => ({
+                url: '/bookings',
+                method: "GET",
+            }),
+            providesTags: ["booking"]
         }),
 
         // get single facility query
@@ -82,4 +67,4 @@ const facilityApi = baseApi.injectEndpoints({
     }),
 })
 
-export const { useGetAllFacilityQuery, useAddFacilityMutation, useDeleteFacilityMutation, useGetSingleFacilityQuery, useUpdateFacilityMutation } = facilityApi
+export const { useGetAllBookingQuery } = bookingApi
