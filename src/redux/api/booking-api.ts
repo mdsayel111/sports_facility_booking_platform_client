@@ -1,4 +1,4 @@
-import { TFacilityData } from "../../type";
+import { TBooking, TFacilityData } from "../../type";
 import { baseApi } from "./base-api";
 
 export type TGetAllFacilityQueryParams = {
@@ -19,27 +19,38 @@ const bookingApi = baseApi.injectEndpoints({
             providesTags: ["booking"]
         }),
 
-        // get single facility query
-        getSingleFacility: build.query({
+        // get single booking query
+        getSingleBooking: build.query({
             query: (id: string) => {
                 return {
-                    url: `/facility/${id}`,
+                    url: `/bookings/user/${id}`,
                     method: "GET",
                 }
-            }
+            },
+        }),
+
+        // get all slots query
+        getAvailableSlots: build.query({
+            query: (date: string) => {
+                return {
+                    url: '/check-availability',
+                    method: "GET",
+                    params: { date }
+                }
+            },
+            providesTags: ["slots"]
         }),
 
         // add facility mutation
-        addFacility: build.mutation({
-            query: (data: TFacilityData) => {
-                console.log(data)
+        addBooking: build.mutation({
+            query: (data: TBooking) => {
                 return ({
-                    url: '/facility',
+                    url: '/bookings',
                     method: "POST",
                     body: data
                 })
             },
-            invalidatesTags: ["facility"]
+            invalidatesTags: ["slots"]
         }),
 
         // add facility mutation
@@ -53,18 +64,7 @@ const bookingApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["facility"]
         }),
-
-        // delete facility mutation
-        deleteFacility: build.mutation({
-            query: (id: string) => {
-                return ({
-                    url: `/facility/${id}`,
-                    method: "DELETE",
-                })
-            },
-            invalidatesTags: ["facility"]
-        })
     }),
 })
 
-export const { useGetAllBookingQuery } = bookingApi
+export const { useGetAllBookingQuery, useGetAvailableSlotsQuery, useAddBookingMutation, useGetSingleBookingQuery } = bookingApi

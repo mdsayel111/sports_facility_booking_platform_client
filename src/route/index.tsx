@@ -1,6 +1,7 @@
 import Greeting from "../components/dashboard/greeting/Greeting";
 import AboutUs from "../pages/about-us/AboutUs";
 import AddFacility from "../pages/add-facility/AddFacility";
+import BookingDetails from "../pages/booking-details/BookingDetails";
 import BookingManagement from "../pages/booking-management/BookingManagement";
 import ContactUs from "../pages/contsct-us/ContactUs";
 import CreateAdminAccount from "../pages/create-admin-account/CreateAdminAccount";
@@ -10,6 +11,7 @@ import FacilityDetails from "../pages/facility-details/FacilityDetails";
 import FacilityManagement from "../pages/facility-management/FacilityManagement";
 import Facility from "../pages/facility/Facility";
 import Home from "../pages/home/Home";
+import MyBooking from "../pages/my-booking/MyBooking";
 import UpdateFacility from "../pages/update-facility/UpdateFacility";
 import { TRoute } from "../type/route-type";
 
@@ -52,6 +54,10 @@ const route: TRoute[] = [
         path: "/add-facility",
         element: <AddFacility />
     },
+    {
+        path: "/booking-details/:id",
+        element: <BookingDetails />
+    },
 
     // dashboard
     {
@@ -81,7 +87,7 @@ const route: TRoute[] = [
 
                 path: "/dashboard/my-booking",
                 name: "My-Booking",
-                element: <BookingManagement />
+                element: <MyBooking />
             },
             {
 

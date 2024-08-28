@@ -37,3 +37,15 @@ export type TBookingData = {
     isBooked: string
     user: TUserData
 }
+
+export type TSlotData = {
+    startTime: string;
+    endTime: string
+}
+
+export type TBooking = {
+    facility: string
+    date: string
+    startTime: string
+    endTime: string
+}

@@ -42,6 +42,8 @@ const facilityApi = baseApi.injectEndpoints({
                     method: "GET",
                 }
             }
+            ,
+            providesTags: ["facility"]
         }),
 
         // add facility mutation
