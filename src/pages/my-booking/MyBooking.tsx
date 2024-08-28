@@ -11,8 +11,6 @@ const MyBooking = () => {
     // get all bookings of user
     const { data: allBookingsOfUser } = useGetUserBookingsQuery(undefined)
 
-    console.log(allBookingsOfUser)
-
     const [cancelBooking] = useUpdateBookingMutation()
 
 

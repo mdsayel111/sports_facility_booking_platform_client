@@ -34,8 +34,6 @@ const Facility = () => {
     // get meta from response
     const meta = data?.data?.meta
 
-    console.log(meta)
-
     return (
         <div className="my-8 min-h-[100vh]">
             <Title title="All Facility" />

@@ -31,9 +31,7 @@ const UpdateFacility = () => {
     // add facility handler
     const handleAddFacility = async (data: TFacilityData) => {
         try {
-            // console.log("before", facilityData.img)
             const imgUrl = fileList.length > 0 ? await uploadSingleImg(data.img as File) : facilityData.img
-            console.log("after", imgUrl)
             data.img = imgUrl
             data.pricePerHour = Number(data.pricePerHour)
             data._id = id as string

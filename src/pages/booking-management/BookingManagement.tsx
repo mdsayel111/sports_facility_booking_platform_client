@@ -60,8 +60,6 @@ const BookingManagement = () => {
             payableAmount: elem.payableAmount
         }
     }) : []
-
-    console.log(allBookings)
     return (
         <div>
             <Title title="All Bookings" />

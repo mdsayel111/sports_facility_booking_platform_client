@@ -49,7 +49,6 @@ const facilityApi = baseApi.injectEndpoints({
         // add facility mutation
         addFacility: build.mutation({
             query: (data: TFacilityData) => {
-                console.log(data)
                 return ({
                     url: '/facility',
                     method: "POST",

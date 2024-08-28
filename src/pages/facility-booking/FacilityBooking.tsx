@@ -47,7 +47,6 @@ const FacilityBooking = () => {
         try {
 
             const res = await addBooking(bookingData)
-            console.log(res)
             if (res.data?.success) {
                 const id = res.data?.data?._id
                 toast.success(res.data?.message)

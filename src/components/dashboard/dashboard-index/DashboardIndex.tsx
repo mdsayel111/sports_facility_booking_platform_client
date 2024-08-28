@@ -5,7 +5,6 @@ import { selectAuth } from "../../../redux/slices/auth-slice";
 
 const DashboardIndex = () => {
     const auth = useAppSelector(selectAuth)
-    console.log(auth)
     if (!auth.userData.role) {
         return <></>
     }

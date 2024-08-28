@@ -9,8 +9,6 @@ const FacilityDetails = () => {
     const { data } = useGetSingleFacilityQuery(id as string, { skip: !id ? true : false })
 
     const facilityData: TFacilityData = data?.data
-
-    console.log(facilityData)
     return (
         <div className="my-8">
             <Title title="Facility Details" />
