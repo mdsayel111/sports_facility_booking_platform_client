@@ -28,6 +28,6 @@ const customBaseQuery = async (args: FetchArgs, api: BaseQueryApi, extraOptions:
 export const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery: customBaseQuery,
-    tagTypes: ["facility", "booking", "slots"],
+    tagTypes: ["facility", "booking", "slots", "my-bookings"],
     endpoints: () => ({}),
 })

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Title from "../../components/shared/title/Title";
 import { useGetSingleBookingQuery } from "../../redux/api/booking-api";
 import { TBookingData } from "../../type";
+import { Tag } from "antd";
 
 const BookingDetails = () => {
     const { id } = useParams()
@@ -16,7 +17,7 @@ const BookingDetails = () => {
             {
                 bookingData && <div className="flex justify-center items-center gap-20 flex-col lg:flex-row p-8 rounded-xl shadow-2xl my-8">
                     <div className="flex justify-center items-center">
-                        <div className="lg:w-96 lg:h-96 w-50 h-50">
+                        <div className="lg:w-96 lg:h-96 w-50 h-50 overflow-hidden">
                             <img className="w-full" src={bookingData.facility.img as string} alt="" />
                         </div>
                     </div>
@@ -37,6 +38,9 @@ const BookingDetails = () => {
                                 <div className="border-x-2 border-secondary" />
                                 <p>Total Price: {bookingData.payableAmount}</p>
                             </div>
+                            <p className="text-lg">
+                                Status: <Tag color={bookingData.isBooked === "confirmed" ? "green" : "red"}>{bookingData.isBooked}</Tag>
+                            </p>
                             <p className="text-lg">Location: {bookingData.facility.location}</p>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import type { MenuProps } from 'antd';
 import { Button, Menu } from 'antd';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { adminForbiddenPath, userForbiddenPath } from '../../../constant';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { logout, selectAuth } from '../../../redux/slices/auth-slice';
@@ -10,6 +10,8 @@ import { getAntDesighnNavItems } from '../../../utils';
 
 const MenuItems = ({ mode }: { mode: "horizontal" | "inline" }) => {
     const [current, setCurrent] = useState("Home");
+
+    const navigate = useNavigate()
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
@@ -43,6 +45,7 @@ const MenuItems = ({ mode }: { mode: "horizontal" | "inline" }) => {
     // logout handler
     const handleLogout = () => {
         dispatch(logout())
+        navigate("/")
     }
 
     // if auth.token exist, means user logged in

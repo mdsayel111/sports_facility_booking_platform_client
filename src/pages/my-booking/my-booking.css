@@ -1,0 +1,4 @@
+.ant-table .ant-table-cell {
+    padding: 10px 70px !important;
+    text-align: center !important; /* Adjust the padding to control space */
+  }

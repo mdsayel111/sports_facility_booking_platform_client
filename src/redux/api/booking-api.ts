@@ -29,6 +29,17 @@ const bookingApi = baseApi.injectEndpoints({
             },
         }),
 
+        // get single booking query
+        getUserBookings: build.query({
+            query: () => {
+                return {
+                    url: `/bookings/user/`,
+                    method: "GET",
+                }
+            },
+            providesTags: ["my-bookings"]
+        }),
+
         // get all slots query
         getAvailableSlots: build.query({
             query: (date: string) => {
@@ -50,21 +61,21 @@ const bookingApi = baseApi.injectEndpoints({
                     body: data
                 })
             },
-            invalidatesTags: ["slots"]
+            invalidatesTags: ["slots", "my-bookings"]
         }),
 
         // add facility mutation
-        updateFacility: build.mutation({
-            query: (data: TFacilityData) => {
+        updateBooking: build.mutation({
+            query: (data: { id: string, data: { isBooked: string } }) => {
                 return ({
-                    url: `/facility/${data._id}`,
-                    method: "PUT",
-                    body: data
+                    url: `/bookings/${data.id}`,
+                    method: "PATCH",
+                    body: data.data
                 })
             },
-            invalidatesTags: ["facility"]
+            invalidatesTags: ["my-bookings", "slots"]
         }),
     }),
 })
 
-export const { useGetAllBookingQuery, useGetAvailableSlotsQuery, useAddBookingMutation, useGetSingleBookingQuery } = bookingApi
+export const { useGetAllBookingQuery, useGetAvailableSlotsQuery, useAddBookingMutation, useGetSingleBookingQuery, useGetUserBookingsQuery, useUpdateBookingMutation } = bookingApi

@@ -82,8 +82,9 @@ const FacilityBooking = () => {
                             <span> {facilityData.location}</span>
                         </p>
                     </div>}
-                    <div className="mt-4">
+                    <div className="mt-4 flex gap-4 items-center">
                         <DatePicker onChange={handleDateOnchange} />
+                        <Button type="primary">Check Avaiablity</Button>
                     </div>
                     <div>
                         <h3 className="text-secondary my-4 text-lg font-bold">Available Slot</h3>

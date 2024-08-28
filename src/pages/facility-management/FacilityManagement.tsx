@@ -40,7 +40,7 @@ const FacilityManagement = () => {
             title: 'Image',
             dataIndex: 'img',
             key: 'img',
-            render: (text) => <img className='lg:w-52 lg:h-52 min-w-24 h-24' src={text} />,
+            render: (text) => <img className='lg:min-w-52 lg:min-h-52 lg:max-w-52  lg:max-h-52 min-w-24 min-h-24' src={text} />,
         },
         {
             title: 'Name',
@@ -86,10 +86,10 @@ const FacilityManagement = () => {
     return (
         <div>
             <Title title='All Facility' />
-            <div className='flex justify-end mb-4'>
+            <div className='flex justify-end mb-4 '>
                 <NavLink className="p-5" to={"/add-facility"}><Button type='primary'>Add facility</Button></NavLink>
             </div>
-            <div className='w-full overflow-x-auto'>
+            <div className='w-full overflow-x-auto p-12 rounded-xl shadow-xl'>
                 <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' />
             </div>
         </div>

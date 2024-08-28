@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 
 const FacilityCard = ({ data }: { data: TFacilityData }) => {
-    const { _id, name, img, description } = data
+    const { _id, name, img, description, pricePerHour } = data
     return (
         <div className='shadow-2xl'>
             <Card
@@ -24,7 +24,10 @@ const FacilityCard = ({ data }: { data: TFacilityData }) => {
             >
                 <Meta
                     title={name}
-                    description={`${description.slice(0, 25)}... more`}
+                    description={<div>
+                        <p>{`${description.slice(0, 25)}... more`}</p>
+                        <p className='text-secondary'>Price Per Hour: {pricePerHour} BDT</p>
+                    </div>}
                 />
             </Card>
         </div>

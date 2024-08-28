@@ -14,6 +14,7 @@ import Home from "../pages/home/Home";
 import MyBooking from "../pages/my-booking/MyBooking";
 import UpdateFacility from "../pages/update-facility/UpdateFacility";
 import { TRoute } from "../type/route-type";
+import ProtectedRouteWraper from "../wraper/ProtectedRouteWraper";
 
 // create route for genarate route and navigation
 const route: TRoute[] = [
@@ -34,7 +35,7 @@ const route: TRoute[] = [
     },
     {
         path: "/facility-booking/:id",
-        element: <FacilityBooking />
+        element: <ProtectedRouteWraper role={["user"]}><FacilityBooking /></ProtectedRouteWraper>
     },
     {
         name: "About-Us",
@@ -48,22 +49,22 @@ const route: TRoute[] = [
     },
     {
         path: "/update-facility/:id",
-        element: <UpdateFacility />
+        element: <ProtectedRouteWraper role={["admin"]}><UpdateFacility /></ProtectedRouteWraper>
     },
     {
         path: "/add-facility",
-        element: <AddFacility />
+        element: <ProtectedRouteWraper role={["admin"]}><AddFacility /></ProtectedRouteWraper>
     },
     {
         path: "/booking-details/:id",
-        element: <BookingDetails />
+        element: <ProtectedRouteWraper role={["user"]}><BookingDetails /></ProtectedRouteWraper>
     },
 
     // dashboard
     {
         name: "Dashboard",
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRouteWraper role={["user", "admin"]}><Dashboard /></ProtectedRouteWraper>,
         // dashboard sub menu
         children: [
             {
@@ -71,30 +72,33 @@ const route: TRoute[] = [
                 path: "/dashboard",
                 element: <Greeting />
             },
+            // admin route
             {
 
                 path: "/dashboard/facility-management",
                 name: "Facility-Management",
-                element: <FacilityManagement />
-            },
-            {
-
-                path: "/dashboard/booking-management",
-                name: "Booking-Management",
-                element: <BookingManagement />
-            },
-            {
-
-                path: "/dashboard/my-booking",
-                name: "My-Booking",
-                element: <MyBooking />
+                element: <ProtectedRouteWraper role={['admin']}><FacilityManagement /></ProtectedRouteWraper>
             },
             {
 
                 path: "/dashboard/create-admin-account",
                 name: "Create-Admin-Account",
-                element: <CreateAdminAccount />
+                element: <ProtectedRouteWraper role={["admin"]}><CreateAdminAccount /></ProtectedRouteWraper>
             },
+            {
+
+                path: "/dashboard/booking-management",
+                name: "Booking-Management",
+                element: <ProtectedRouteWraper role={["admin"]}><BookingManagement /></ProtectedRouteWraper>
+            },
+            // user route
+            {
+
+                path: "/dashboard/my-booking",
+                name: "My-Booking",
+                element: <ProtectedRouteWraper role={["user"]}><MyBooking /></ProtectedRouteWraper>
+            },
+
         ]
     },
 ]
