@@ -1,34 +1,33 @@
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
+import { Avatar, Button, Card } from 'antd';
 import { TFacilityData } from '../../../type';
+import { NavLink } from 'react-router-dom';
 
 const { Meta } = Card;
 
 
 
 const FacilityCard = ({ data }: { data: TFacilityData }) => {
-    const {name} = data
+    const { _id, name, img, description } = data
     return (
-        <Card
-            style={{ width: 300 }}
-            cover={
-                <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+        <div className='shadow-2xl'>
+            <Card
+                style={{ width: 300 }}
+                cover={
+                    <img
+                        className='w-[300px] h-[300px]'
+                        alt="example"
+                        src={img as string}
+                    />
+                }
+                actions={[<NavLink to={`/facility-details/${_id}`}><Button type='primary' >View Details</Button></NavLink>]}
+            >
+                <Meta
+                    title={name}
+                    description={`${description.slice(0, 25)}... more`}
                 />
-            }
-            actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-            ]}
-        >
-            <Meta
-                avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
-                title="Card title"
-                description="This is the description"
-            />
-        </Card>
+            </Card>
+        </div>
     )
 };
 

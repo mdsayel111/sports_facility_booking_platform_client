@@ -27,11 +27,11 @@ const route: TRoute[] = [
         element: <Facility />
     },
     {
-        path: "/facility/:id",
+        path: "/facility-details/:id",
         element: <FacilityDetails />
     },
     {
-        path: "/facility/booking/:id",
+        path: "/facility-booking/:id",
         element: <FacilityBooking />
     },
     {
@@ -52,14 +52,17 @@ const route: TRoute[] = [
         path: "/add-facility",
         element: <AddFacility />
     },
+
+    // dashboard
     {
         name: "Dashboard",
         path: "/dashboard",
         element: <Dashboard />,
+        // dashboard sub menu
         children: [
             {
                 index: true,
-                path: "/dashboard/facility-management",
+                path: "/dashboard",
                 element: <Greeting />
             },
             {
@@ -76,8 +79,14 @@ const route: TRoute[] = [
             },
             {
 
+                path: "/dashboard/my-booking",
+                name: "My-Booking",
+                element: <BookingManagement />
+            },
+            {
+
                 path: "/dashboard/create-admin-account",
-                name: "Create Admin account",
+                name: "Create-Admin-Account",
                 element: <CreateAdminAccount />
             },
         ]

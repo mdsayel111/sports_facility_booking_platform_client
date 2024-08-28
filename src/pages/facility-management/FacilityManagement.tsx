@@ -1,12 +1,11 @@
-import React from 'react';
-import { Button, Space, Table, Tag } from 'antd';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { TableProps } from 'antd';
-import { TGetAllFacilityQueryParams, useDeleteFacilityMutation, useGetAllFacilityQuery } from '../../redux/api/facility-api';
-import { TFacilityData } from '../../type';
+import { Button, Space, Table } from 'antd';
+import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 import Title from '../../components/shared/title/Title';
-import toast from 'react-hot-toast';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { TGetAllFacilityQueryParams, useDeleteFacilityMutation, useGetAllFacilityQuery } from '../../redux/api/facility-api';
+import { TFacilityData } from '../../type';
 
 
 
