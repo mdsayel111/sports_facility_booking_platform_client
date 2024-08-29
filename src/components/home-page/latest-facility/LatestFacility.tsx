@@ -13,7 +13,8 @@ const LatestFacility = () => {
             <Title title="Latest Facility" />
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
                 {
-                    latestFacility && latestFacility.length > 0 ? latestFacility.map((facility: TFacilityData) => (<div className="shadow-2xl">
+                    latestFacility && latestFacility.length > 0 ? latestFacility.map((facility: TFacilityData) => (<div
+                        key={facility._id} className="shadow-2xl">
                         <FacilityCard data={facility} />
                     </div>)) : <>No</>
                 }
