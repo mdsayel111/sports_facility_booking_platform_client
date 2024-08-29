@@ -31,7 +31,7 @@ const route: TRoute[] = [
     },
     {
         path: "/facility-details/:id",
-        element: <FacilityDetails />
+        element: <ProtectedRouteWraper role={["user"]}><FacilityDetails /></ProtectedRouteWraper>
     },
     {
         path: "/facility-booking/:id",

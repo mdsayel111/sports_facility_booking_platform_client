@@ -5,6 +5,13 @@
 ## Live Link
 
 
+## Admin login:
+```
+  {
+  "email": "web@programming-hero-a.com",
+  "password": "programming-hero"
+  }
+```
 ## Introduction
 
 It is a platform for booking sports facilities. Users can easily book sports facilities on this website. Administrators have full control over the platform.

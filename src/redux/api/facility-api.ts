@@ -34,6 +34,17 @@ const facilityApi = baseApi.injectEndpoints({
             providesTags: ["facility"]
         }),
 
+        // get latest facility query
+        getLatestFacility: build.query({
+            query: () => {
+                return {
+                    url: '/facility/latest-facility',
+                    method: "GET",
+                }
+            },
+            providesTags: ["facility"]
+        }),
+
         // get single facility query
         getSingleFacility: build.query({
             query: (id: string) => {
@@ -83,4 +94,4 @@ const facilityApi = baseApi.injectEndpoints({
     }),
 })
 
-export const { useGetAllFacilityQuery, useAddFacilityMutation, useDeleteFacilityMutation, useGetSingleFacilityQuery, useUpdateFacilityMutation } = facilityApi
+export const { useGetAllFacilityQuery, useAddFacilityMutation, useDeleteFacilityMutation, useGetSingleFacilityQuery, useUpdateFacilityMutation, useGetLatestFacilityQuery } = facilityApi

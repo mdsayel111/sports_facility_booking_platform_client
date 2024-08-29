@@ -10,7 +10,7 @@ const ProtectedRouteWraper = ({ role, children }: TProtectedRouteWraper) => {
     const auth = useAppSelector(selectAuth)
 
     if (!role.includes(auth.userData.role as ("user" | "admin"))) {
-        toast.error("Trying to access admin pages as a regular user!")
+        toast.error(`${auth.userData.role} is not authorized to this route!`)
         return (auth.userData.role ? <Navigate to={"/"} replace /> : <Navigate to={"/login"} replace />)
     }
     return (

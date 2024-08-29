@@ -15,17 +15,17 @@ const BookingDetails = () => {
         <div className="my-8">
             <Title title="Booking Details" />
             {
-                bookingData && <div className="flex justify-center items-center gap-20 flex-col lg:flex-row p-8 rounded-xl shadow-2xl my-8">
-                    <div className="flex justify-center items-center">
-                        <div className="lg:w-96 lg:h-96 w-50 h-50 overflow-hidden">
+                bookingData && <div className="flex justify-center items-center gap-20 flex-col lg:flex-row p-16 rounded-xl shadow-2xl my-8">
+                    <div className="flex justify-center items-center lg:w-1/2 w-full">
+                        <div className="w-full">
                             <img className="w-full" src={bookingData.facility.img as string} alt="" />
                         </div>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center w-full lg:w-1/2">
                         <div className="space-y-4">
                             <p>Date: {new Date(bookingData.date).toLocaleDateString("ca-en")}</p>
                             <h3 className="text-primary font-bold text-2xl">{bookingData.facility.name}</h3>
-                            <p className="text-lg">
+                            <p className="text-lg text-gray-400">
                                 {bookingData.facility.description}
                             </p>
                             <div className="flex gap-4 text-lg">

@@ -16,9 +16,9 @@ const FacilityDetails = () => {
                 facilityData && <div className="mt-8 shadow-2xl rounded-xl">
                     <section className="relative ">
                         <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 ">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 p-16">
                                 <div className="img flex justify-center items-center">
-                                    <div className="img-box h-[50%] w-[50%]  ">
+                                    <div className="img-box h-[100%] w-[100%]  ">
                                         <img src={facilityData.img as string} alt="Yellow Tropical Printed Shirt image"
                                             className="w-full h-full" />
                                     </div>
