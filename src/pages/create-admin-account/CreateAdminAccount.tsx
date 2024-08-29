@@ -1,15 +1,14 @@
-import { useForm } from "react-hook-form";
-import Title from "../../components/shared/title/Title";
-import toast from "react-hot-toast";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { CiMail } from "react-icons/ci";
+import { FaRegBuilding, FaRegUser } from "react-icons/fa";
+import { MdLockOutline, MdOutlineLocalPhone } from "react-icons/md";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
 import Form from "../../components/shared/form/Form";
 import TextInput from "../../components/shared/text-input/TextInput";
-import { FaRegBuilding, FaRegUser } from "react-icons/fa";
-import { CiMail } from "react-icons/ci";
-import { MdLockOutline, MdOutlineLocalPhone } from "react-icons/md";
-import { Button } from "antd";
+import Title from "../../components/shared/title/Title";
 import { useCreateAdminMutation } from "../../redux/api/auth-api";
-import BasicButton from "../../components/shared/-basic-button/BasicButton";
 
 const CreateAdminAccount = () => {
     // get signup mutation

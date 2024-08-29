@@ -1,7 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Upload } from 'antd';
 import { RcFile } from 'antd/es/upload';
-import { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 type TFileInput = {

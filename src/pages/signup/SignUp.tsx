@@ -1,15 +1,14 @@
-import { Button } from "antd";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { CiMail } from "react-icons/ci";
 import { FaRegBuilding, FaRegUser } from "react-icons/fa";
 import { MdLockOutline, MdOutlineLocalPhone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
 import Form from "../../components/shared/form/Form";
 import TextInput from "../../components/shared/text-input/TextInput";
 import { useSignUpMutation } from "../../redux/api/auth-api";
-import { useForm } from "react-hook-form";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import BasicButton from "../../components/shared/-basic-button/BasicButton";
 
 const SignUp = () => {
     // get signup mutation

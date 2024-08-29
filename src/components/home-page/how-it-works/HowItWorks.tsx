@@ -1,7 +1,6 @@
-import { Steps } from "antd";
-import Title from "../../shared/title/Title";
+import { Button, Steps, theme } from "antd";
 import React, { useState } from 'react';
-import { Button, message, theme } from 'antd';
+import Title from "../../shared/title/Title";
 
 const steps = [
     {

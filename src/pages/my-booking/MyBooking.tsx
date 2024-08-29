@@ -11,7 +11,7 @@ const MyBooking = () => {
     // get all bookings of user
     const { data: allBookingsOfUser, isLoading } = useGetUserBookingsQuery(undefined)
 
-    const [cancelBooking, { isLoading: updateLoading }] = useUpdateBookingMutation()
+    const [cancelBooking] = useUpdateBookingMutation()
 
 
     // handle delete function

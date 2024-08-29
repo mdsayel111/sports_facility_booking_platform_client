@@ -1,4 +1,4 @@
-import { TBooking, TFacilityData } from "../../type";
+import { TBooking } from "../../type";
 import { baseApi } from "./base-api";
 
 export type TGetAllFacilityQueryParams = {
