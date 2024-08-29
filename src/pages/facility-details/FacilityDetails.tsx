@@ -3,17 +3,18 @@ import Title from "../../components/shared/title/Title";
 import { useGetSingleFacilityQuery } from "../../redux/api/facility-api";
 import { TFacilityData } from "../../type";
 import { Button } from "antd";
+import Loader from "../../components/shared/loader/Loader";
 
 const FacilityDetails = () => {
     const { id } = useParams()
-    const { data } = useGetSingleFacilityQuery(id as string, { skip: !id ? true : false })
+    const { data, isLoading } = useGetSingleFacilityQuery(id as string, { skip: !id ? true : false })
 
     const facilityData: TFacilityData = data?.data
     return (
         <div className="my-8">
             <Title title="Facility Details" />
             {
-                facilityData && <div className="mt-8 shadow-2xl rounded-xl">
+                !isLoading && facilityData && <div className="mt-8 shadow-2xl rounded-xl">
                     <section className="relative ">
                         <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 p-16">
@@ -48,6 +49,9 @@ const FacilityDetails = () => {
                     </section>
 
                 </div>
+            }
+            {
+                isLoading && <Loader />
             }
         </div>
     );

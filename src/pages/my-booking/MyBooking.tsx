@@ -1,21 +1,22 @@
-import { Button, Space, Table, TableProps } from "antd";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { Button, Space, Table, TableProps, Tag } from "antd";
+import toast from "react-hot-toast";
 import { NavLink } from "react-router-dom";
 import Title from "../../components/shared/title/Title";
 import { useGetUserBookingsQuery, useUpdateBookingMutation } from "../../redux/api/booking-api";
 import { TBookingData } from "../../type";
-import "./my-booking.css"
-import toast from "react-hot-toast";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import "./my-booking.css";
 
 const MyBooking = () => {
     // get all bookings of user
-    const { data: allBookingsOfUser } = useGetUserBookingsQuery(undefined)
+    const { data: allBookingsOfUser, isLoading } = useGetUserBookingsQuery(undefined)
 
-    const [cancelBooking] = useUpdateBookingMutation()
+    const [cancelBooking, { isLoading: updateLoading }] = useUpdateBookingMutation()
 
 
     // handle delete function
     const handleCancel = async (id: string) => {
+        console.log(id)
         try {
             const res = await cancelBooking({ id, data: { isBooked: "cancel" } })
 
@@ -77,12 +78,19 @@ const MyBooking = () => {
             key: 'payableAmount',
         },
         {
+            title: 'Status',
+            key: 'status',
+            render: (_, record) => (
+                <Tag color={record.isBooked === "confirmed" ? "green" : "red"}>{record.isBooked}</Tag>
+            ),
+        },
+        {
             title: 'Action',
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
                     <NavLink to={`/booking-details/${record._id}`}><Button >View Details</Button></NavLink>
-                    <Button type='primary' onClick={() => handleCancel(record._id)}>Cancel</Button>
+                    <Button type="primary" disabled={record.isBooked === "cancel"} onClick={() => handleCancel(record._id)}>Cancel</Button>
                 </Space>
             ),
         },
@@ -100,7 +108,8 @@ const MyBooking = () => {
             startTime: elem.startTime,
             endTime: elem.endTime,
             payableAmount: elem.payableAmount,
-            _id: elem._id
+            _id: elem._id,
+            isBooked: elem.isBooked
         }
     }) : []
 
@@ -109,7 +118,7 @@ const MyBooking = () => {
         <div>
             <Title title='My Bookings' />
             <div className='w-full overflow-x-scroll shadow-2xl p-12 rounded-2xl'>
-                <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "auto", whiteSpace: "nowrap", textAlign: "center" }} id='table' />
+                <Table loading={isLoading} columns={columns} dataSource={rowData} pagination={false} style={{ width: "auto", whiteSpace: "nowrap", textAlign: "center" }} id='table' />
             </div>
         </div>
     )

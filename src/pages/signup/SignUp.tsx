@@ -9,10 +9,11 @@ import TextInput from "../../components/shared/text-input/TextInput";
 import { useSignUpMutation } from "../../redux/api/auth-api";
 import { useForm } from "react-hook-form";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
 
 const SignUp = () => {
     // get signup mutation
-    const [signup] = useSignUpMutation()
+    const [signup, {isLoading}] = useSignUpMutation()
 
     // react hook form
     const methods = useForm()
@@ -35,7 +36,7 @@ const SignUp = () => {
             toast.error(error.message)
         }
     }
-    
+
     return (
         <div className="h-[70vh] flex flex-col justify-center items-center">
             <div>
@@ -46,7 +47,7 @@ const SignUp = () => {
                     <TextInput name="phone" placeholder="Phone" prefix={<MdOutlineLocalPhone className="text-gray-400" />} />
                     <TextInput name="address" placeholder="Address" prefix={<FaRegBuilding className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <Button type="primary" htmlType="submit">Sign Up</Button>
+                    <BasicButton loading={isLoading}  htmlType="submit">Sign Up</BasicButton>
                 </Form>
             </div>
         </div>

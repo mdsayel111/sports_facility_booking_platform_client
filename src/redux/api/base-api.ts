@@ -1,11 +1,12 @@
 // Need to use the React-specific entry point to import createApi
 import { BaseQueryApi, createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
+import config from '../../config';
 
 const customBaseQuery = async (args: FetchArgs, api: BaseQueryApi, extraOptions: any) => {
 
     const baseResult = await fetchBaseQuery({
-        baseUrl: "http://localhost:5000/api", prepareHeaders: (headers, { getState }) => {
+        baseUrl: config.baseUrl, prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.token
 
             // If we have a token set in state, let's assume that we should be passing it.

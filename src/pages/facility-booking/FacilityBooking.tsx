@@ -7,6 +7,7 @@ import { Button, DatePicker, DatePickerProps } from "antd";
 import { TSlotData } from "../../type";
 import toast from "react-hot-toast";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import Loader from "../../components/shared/loader/Loader";
 
 const FacilityBooking = () => {
     // date state
@@ -22,7 +23,7 @@ const FacilityBooking = () => {
     const { data } = useGetSingleFacilityQuery(id as string, { skip: !id ? true : false })
 
     // get available slot
-    const { data: allSlotsRes } = useGetAvailableSlotsQuery(date)
+    const { data: allSlotsRes, isLoading } = useGetAvailableSlotsQuery(date)
 
     // all slote
     const allSlots: TSlotData[] = allSlotsRes?.data
@@ -89,33 +90,38 @@ const FacilityBooking = () => {
                         <h3 className="text-secondary my-4 text-lg font-bold">Available Slot</h3>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {
-                                allSlots && allSlots.map((slot) => (<div key={slot.startTime} className="flex flex-col justify-center gap-4   border-2 p-4 rounded-lg border-primary">
-                                    <div className="flex gap-4">
-                                        <div className="space-x-2">
-                                            <span>
-                                                Start time:
-                                            </span>
-                                            <span>
-                                                {slot.startTime}
-                                            </span>
+                                allSlots && allSlots.map((slot) => (
+                                    <div key={slot.startTime} className="flex flex-col justify-center gap-4   border-2 p-4 rounded-lg border-primary">
+                                        <div className="flex gap-4">
+                                            <div className="space-x-2">
+                                                <span>
+                                                    Start time:
+                                                </span>
+                                                <span>
+                                                    {slot.startTime}
+                                                </span>
+                                            </div>
+                                            <div className="border-x-[1px] border-secondary" />
+                                            <div className="space-x-2">
+                                                <span>
+                                                    End time:
+                                                </span>
+                                                <span>
+                                                    {slot.endTime}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="border-x-[1px] border-secondary" />
-                                        <div className="space-x-2">
-                                            <span>
-                                                End time:
-                                            </span>
-                                            <span>
-                                                {slot.endTime}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <Button
-                                        onClick={() => handleBooking(slot.startTime, slot.endTime)}
-                                        type="primary">Book Now</Button>
-                                </div>))
+                                        <Button
+                                            onClick={() => handleBooking(slot.startTime, slot.endTime)}
+                                            type="primary">Book Now</Button>
+                                    </div>))
                             }
                         </div>
                     </div>
+
+                    {
+                        isLoading && <Loader />
+                    }
                 </div>
             </div>
         </div>

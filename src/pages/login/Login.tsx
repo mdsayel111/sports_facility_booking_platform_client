@@ -10,10 +10,11 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { setAuth } from '../../redux/slices/auth-slice';
 import { useAppDispatch } from '../../redux/hooks';
 import { useForm } from 'react-hook-form';
+import BasicButton from '../../components/shared/-basic-button/BasicButton';
 
 const Login = () => {
     // get signup mutation
-    const [login] = useLogInMutation()
+    const [login, { isLoading }] = useLogInMutation()
 
     // react hook form methds
     const methods = useForm()
@@ -47,7 +48,7 @@ const Login = () => {
                 <Form methods={methods} onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <Button type="primary" htmlType="submit">Sign Up</Button>
+                    <BasicButton loading={isLoading} htmlType="submit">Lig In</BasicButton>
                 </Form>
             </div>
         </div>

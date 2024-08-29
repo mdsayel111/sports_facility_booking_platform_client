@@ -11,7 +11,7 @@ import { TFacilityData } from '../../type';
 
 const FacilityManagement = () => {
     // get all facility
-    const { data: allFacility } = useGetAllFacilityQuery({} as TGetAllFacilityQueryParams)
+    const { data: allFacility, isLoading } = useGetAllFacilityQuery({} as TGetAllFacilityQueryParams)
 
     const [deleteFacility] = useDeleteFacilityMutation()
 
@@ -90,7 +90,7 @@ const FacilityManagement = () => {
                 <NavLink className="p-5" to={"/add-facility"}><Button type='primary'>Add facility</Button></NavLink>
             </div>
             <div className='w-full overflow-x-auto p-12 rounded-xl shadow-xl'>
-                <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' />
+                <Table loading={isLoading} columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' />
             </div>
         </div>
     )

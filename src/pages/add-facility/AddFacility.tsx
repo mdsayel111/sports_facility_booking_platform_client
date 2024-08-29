@@ -1,4 +1,9 @@
-import { Button } from "antd";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { RcFile } from "antd/es/upload";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
 import FileInput from "../../components/shared/file-input/FileInput";
 import Form from "../../components/shared/form/Form";
 import NumberInput from "../../components/shared/number-input/NumberInput";
@@ -7,15 +12,13 @@ import Title from "../../components/shared/title/Title";
 import { useAddFacilityMutation } from "../../redux/api/facility-api";
 import { TFacilityData } from "../../type";
 import { uploadSingleImg } from "../../utils";
-import toast from "react-hot-toast";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { useState } from "react";
-import { RcFile } from "antd/es/upload";
-import { FieldValues, SubmitHandler, useForm, UseFormReset } from "react-hook-form";
 
 const AddFacility = () => {
     // react hook form hook
     const methods = useForm()
+
+    // loading state
+    const [loading, setLoading] = useState(false)
 
     const [addFacility] = useAddFacilityMutation()
 
@@ -24,6 +27,7 @@ const AddFacility = () => {
 
     // add facility handler
     const handleAddFacility = async (data: TFacilityData) => {
+        setLoading(!loading)
         try {
             const imgUrl = await uploadSingleImg(data.img as File)
             data.img = imgUrl
@@ -46,6 +50,8 @@ const AddFacility = () => {
             }
         } catch (error: any) {
             toast.error(error.message)
+        } finally {
+            setLoading(!loading)
         }
     }
 
@@ -60,7 +66,7 @@ const AddFacility = () => {
                     <NumberInput name="pricePerHour" placeholder="Price Per Hour" />
                     <TextInput name="location" placeholder="Location" />
                     <div className="flex justify-center">
-                        <Button htmlType="submit" type="primary">Add Facility</Button>
+                        <BasicButton htmlType="submit" loading={loading}>Add Facility</BasicButton>
                     </div>
                 </Form>
             </div>

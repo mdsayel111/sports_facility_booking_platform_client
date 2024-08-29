@@ -4,7 +4,7 @@ import { useGetAllBookingQuery } from "../../redux/api/booking-api";
 import { TBookingData } from "../../type";
 
 const BookingManagement = () => {
-    const { data } = useGetAllBookingQuery(undefined)
+    const { data, isLoading } = useGetAllBookingQuery(undefined)
 
     const allBookings = data?.data
 
@@ -64,7 +64,7 @@ const BookingManagement = () => {
         <div>
             <Title title="All Bookings" />
             <div className='w-full overflow-x-auto'>
-                <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' />
+                <Table columns={columns} dataSource={rowData} pagination={false} style={{ width: "100%", whiteSpace: "nowrap" }} id='table' loading={isLoading} />
             </div>
         </div>
     );

@@ -1,18 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useGetSingleFacilityQuery, useUpdateFacilityMutation } from "../../redux/api/facility-api";
-import { Button } from "antd";
-import Title from "../../components/shared/title/Title";
-import Form from "../../components/shared/form/Form";
-import TextInput from "../../components/shared/text-input/TextInput";
-import FileInput from "../../components/shared/file-input/FileInput";
-import NumberInput from "../../components/shared/number-input/NumberInput";
-import { useForm } from "react-hook-form";
-import { uploadSingleImg } from "../../utils";
-import { TFacilityData } from "../../type";
-import { useEffect, useState } from "react";
-import { RcFile } from "antd/es/upload";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { RcFile } from "antd/es/upload";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
+import FileInput from "../../components/shared/file-input/FileInput";
+import Form from "../../components/shared/form/Form";
+import NumberInput from "../../components/shared/number-input/NumberInput";
+import TextInput from "../../components/shared/text-input/TextInput";
+import Title from "../../components/shared/title/Title";
+import { useGetSingleFacilityQuery, useUpdateFacilityMutation } from "../../redux/api/facility-api";
+import { TFacilityData } from "../../type";
+import { uploadSingleImg } from "../../utils";
 
 const UpdateFacility = () => {
     const { id } = useParams()
@@ -23,7 +23,7 @@ const UpdateFacility = () => {
     // react hook form hook
     const methods = useForm()
 
-    const [updateFacility] = useUpdateFacilityMutation()
+    const [updateFacility, { isLoading }] = useUpdateFacilityMutation()
 
     // file list for file input
     const [fileList, setFileList] = useState([] as RcFile[]);
@@ -76,7 +76,7 @@ const UpdateFacility = () => {
                     <NumberInput name="pricePerHour" placeholder="Price Per Hour" />
                     <TextInput name="location" placeholder="Location" />
                     <div className="flex justify-center">
-                        <Button htmlType="submit" type="primary">Add Facility</Button>
+                        <BasicButton htmlType="submit" loading={isLoading}>Add Facility</BasicButton>
                     </div>
                 </Form>
             </div>

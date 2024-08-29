@@ -9,10 +9,11 @@ import { CiMail } from "react-icons/ci";
 import { MdLockOutline, MdOutlineLocalPhone } from "react-icons/md";
 import { Button } from "antd";
 import { useCreateAdminMutation } from "../../redux/api/auth-api";
+import BasicButton from "../../components/shared/-basic-button/BasicButton";
 
 const CreateAdminAccount = () => {
     // get signup mutation
-    const [createAdmin] = useCreateAdminMutation()
+    const [createAdmin, { isLoading }] = useCreateAdminMutation()
 
     // react hook form
     const methods = useForm()
@@ -36,14 +37,14 @@ const CreateAdminAccount = () => {
     return (
         <div className="h-[70vh] flex flex-col justify-center items-center">
             <div>
-                <Title title="Create Admin"/>
+                <Title title="Create Admin" />
                 <Form methods={methods} onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
                     <TextInput name="name" placeholder="Name" prefix={<FaRegUser className="text-gray-400" />} />
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
                     <TextInput name="phone" placeholder="Phone" prefix={<MdOutlineLocalPhone className="text-gray-400" />} />
                     <TextInput name="address" placeholder="Address" prefix={<FaRegBuilding className="text-gray-400" />} />
                     <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <Button type="primary" htmlType="submit">Sign Up</Button>
+                    <BasicButton loading={isLoading} htmlType="submit">Create Admin</BasicButton>
                 </Form>
             </div>
         </div>

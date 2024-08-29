@@ -1,7 +1,6 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card } from 'antd';
-import { TFacilityData } from '../../../type';
+import { Button, Card } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { TFacilityData } from '../../../type';
 
 const { Meta } = Card;
 
@@ -10,9 +9,9 @@ const { Meta } = Card;
 const FacilityCard = ({ data }: { data: TFacilityData }) => {
     const { _id, name, img, description, pricePerHour } = data
     return (
-        <div className='shadow-2xl'>
+        <div className='shadow-2xl p-8 rounded-xl'>
             <Card
-                style={{ width: 300 }}
+                style={{ width: "100%", border: "0px" }}
                 cover={
                     <img
                         className='w-[300px] h-[300px]'

@@ -3,19 +3,20 @@ import Title from "../../components/shared/title/Title";
 import { useGetSingleBookingQuery } from "../../redux/api/booking-api";
 import { TBookingData } from "../../type";
 import { Tag } from "antd";
+import Loader from "../../components/shared/loader/Loader";
 
 const BookingDetails = () => {
     const { id } = useParams()
 
     // get booking details
-    const { data } = useGetSingleBookingQuery(id as string, { skip: !id ? true : false })
+    const { data, isLoading } = useGetSingleBookingQuery(id as string, { skip: !id ? true : false })
 
     const bookingData: TBookingData = data?.data
     return (
         <div className="my-8">
             <Title title="Booking Details" />
             {
-                bookingData && <div className="flex justify-center items-center gap-20 flex-col lg:flex-row p-16 rounded-xl shadow-2xl my-8">
+                !isLoading && bookingData && <div className="flex justify-center items-center gap-20 flex-col lg:flex-row p-16 rounded-xl shadow-2xl my-8">
                     <div className="flex justify-center items-center lg:w-1/2 w-full">
                         <div className="w-full">
                             <img className="w-full" src={bookingData.facility.img as string} alt="" />
@@ -45,6 +46,9 @@ const BookingDetails = () => {
                         </div>
                     </div>
                 </div>
+            }
+            {
+                isLoading && <Loader />
             }
         </div>
     );
