@@ -5,8 +5,6 @@ import config from '../../config';
 
 const customBaseQuery = async (args: FetchArgs, api: BaseQueryApi, extraOptions: any) => {
 
-    console.log(config.baseUrl)
-
     const baseResult = await fetchBaseQuery({
         baseUrl: config.baseUrl, prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.token

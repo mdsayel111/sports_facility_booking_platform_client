@@ -16,7 +16,6 @@ const MyBooking = () => {
 
     // handle delete function
     const handleCancel = async (id: string) => {
-        console.log(id)
         try {
             const res = await cancelBooking({ id, data: { isBooked: "cancel" } })
 

@@ -1,8 +1,7 @@
+import { ItemType } from "antd/es/menu/interface";
+import axios from "axios";
 import { NavLink, RouteObject } from "react-router-dom";
 import { TMenuItem, TRoute } from "../type/route-type";
-import { ItemType } from "antd/es/menu/interface";
-import axios from "axios"
-import config from "../config"
 
 // create a function for genarate route for react router dom
 export const getReactRouterRoute = (arr: TRoute[]): RouteObject[] => {
@@ -56,8 +55,10 @@ export const getAntDesighnNavItems = (arr: TRoute[], forbiddenPath: string[]): T
 export const uploadSingleImg = async (img: File) => {
     // create image form data 
     const formData = new FormData()
-    formData.append("image", img)
-    console.log("res")
-    const res = await axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${config.imgbbApiKey}`, formData)
-    return (res.data as any).data.url
+    formData.append("file", img)
+    formData.append('upload_preset', 'unsighn_upload')
+
+    // uploading img
+    const res = await axios.post("https://api.cloudinary.com/v1_1/dqnrwhshc/image/upload", formData);
+    return res.data.url
 }
