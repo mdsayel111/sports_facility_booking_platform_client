@@ -60,7 +60,9 @@ const Facility = () => {
             </div>
             {(isLoading || isFetching) && <Loader />}
             {
-                allFacility?.length === 0 && <h3 className="text-xl text-center mt-8">No Data Found</h3>
+                allFacility?.length === 0 && <div className="h-screen">
+                    <h3 className="text-xl text-center mt-8 text-primary font-bold">No Data Found</h3>
+                </div>
             }
             {meta ? <Pagination onChange={handlePagination} align="center" defaultCurrent={params.page} total={meta.pageNumber * 10} current={params.page} /> : <></>}
         </div>

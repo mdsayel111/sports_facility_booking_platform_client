@@ -6,7 +6,7 @@ const Testimonial = () => {
       <h1 className="text-primary text-4xl font-bold text-center mb-20">Testimonials</h1>
       <section className="mb- text-center">
 
-        <div className="grid gap-24 md:grid-cols-3 xl:gap-x-12 lg:h-[536px]">
+        <div className="grid gap-24 grid-cols-1 lg:grid-cols-3 xl:gap-x-12 lg:h-[536px]">
           <div className="mb-0">
             <div className=" h-full relative block rounded-lg bg-pink-500 text-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="flex">
