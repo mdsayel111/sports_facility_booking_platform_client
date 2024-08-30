@@ -1,11 +1,11 @@
 import { Pagination, Select } from "antd";
-import Search, { SearchProps } from "antd/es/input/Search";
+import Search from "antd/es/input/Search";
 import { ChangeEventHandler, useState } from "react";
 import FacilityCard from "../../components/shared/facility-card/FacilityCard";
+import Loader from "../../components/shared/loader/Loader";
 import Title from "../../components/shared/title/Title";
 import { useGetAllFacilityQuery } from "../../redux/api/facility-api";
 import { TFacilityData } from "../../type";
-import Loader from "../../components/shared/loader/Loader";
 
 const Facility = () => {
     // create params state for get all facility by filtering
