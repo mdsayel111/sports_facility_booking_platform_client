@@ -5,13 +5,6 @@
 ## Live Link
 
 
-## Admin login:
-```
-  {
-  "email": "web@programming-hero-a.com",
-  "password": "programming-hero"
-  }
-```
 ## Introduction
 
 It is a platform for booking sports facilities. Users can easily book sports facilities on this website. Administrators have full control over the platform.
@@ -60,8 +53,34 @@ $ npm run dev
    Example:
    ```bash
     VITE_IMGBB_API_KEY=Your_ImgBB_Api_Key
+    VITE_BASE_UR=http://localhost:5000/api
    ```
 
 ## Usage
-
-Instructions or examples for using the project. Include screenshots or code snippets if applicable.
+- Clone server and client git repo .
+```
+client : https://github.com/mdsayel111/sports_facility_booking_platform_client
+server: https://github.com/mdsayel111/sports_facility_booking_platform_client
+```
+- run install command . 
+```
+$ npm install
+```
+- Add .env file:
+   - client:
+    ```
+    VITE_IMGBB_API_KEY=Your_ImgBB_Api_Key
+    VITE_BASE_UR=http://localhost:5000/api
+    ```
+    - server:
+    ```
+    SALT=10
+    SECRET_KEY=Your_Secret_Key_To_hash_Password
+    DB_USER_NAME=Your_DB_User_Name
+    DB_PASSWORD=Your_DB_Password
+    DB_URL=your_DB_Url
+    ```
+- Then run following command for both (client and server) for run locally:
+```
+$ npm run dev
+```

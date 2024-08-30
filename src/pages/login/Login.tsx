@@ -46,7 +46,7 @@ const Login = () => {
                 <h1 className="text-3xl text-primary font-bold mb-8 text-center">Login</h1>
                 <Form methods={methods} onSubmit={onSubmit} className="w-80 space-y-4 flex flex-col items-center">
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
-                    <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
+                    <TextInput name="password" placeholder="Password" type='password' prefix={<MdLockOutline className="text-gray-400" />} />
                     <BasicButton loading={isLoading} htmlType="submit">Lig In</BasicButton>
                 </Form>
             </div>

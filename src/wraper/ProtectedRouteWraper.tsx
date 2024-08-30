@@ -9,10 +9,12 @@ const ProtectedRouteWraper = ({ role, children }: TProtectedRouteWraper) => {
 
     const auth = useAppSelector(selectAuth)
 
+    // if user not loggedin
     if (!role.includes(auth.userData.role as ("user" | "admin"))) {
-        toast.error(`${auth.userData.role} is not authorized to this route!`)
+        toast.error(`${auth.userData.role ? auth.userData.role : "Guest user"} is not authorized to this route!`)
         return (auth.userData.role ? <Navigate to={"/"} replace /> : <Navigate to={"/login"} replace />)
     }
+
     return (
         <div>
             {children}

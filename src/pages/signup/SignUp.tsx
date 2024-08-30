@@ -12,7 +12,7 @@ import { useSignUpMutation } from "../../redux/api/auth-api";
 
 const SignUp = () => {
     // get signup mutation
-    const [signup, {isLoading}] = useSignUpMutation()
+    const [signup, { isLoading }] = useSignUpMutation()
 
     // react hook form
     const methods = useForm()
@@ -45,8 +45,8 @@ const SignUp = () => {
                     <TextInput name="email" placeholder="Email" prefix={<CiMail className="text-gray-400" />} />
                     <TextInput name="phone" placeholder="Phone" prefix={<MdOutlineLocalPhone className="text-gray-400" />} />
                     <TextInput name="address" placeholder="Address" prefix={<FaRegBuilding className="text-gray-400" />} />
-                    <TextInput name="password" placeholder="Password" prefix={<MdLockOutline className="text-gray-400" />} />
-                    <BasicButton loading={isLoading}  htmlType="submit">Sign Up</BasicButton>
+                    <TextInput name="password" placeholder="Password" type="password" prefix={<MdLockOutline className="text-gray-400" />} />
+                    <BasicButton loading={isLoading} htmlType="submit">Sign Up</BasicButton>
                 </Form>
             </div>
         </div>

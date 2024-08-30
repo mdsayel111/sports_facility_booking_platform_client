@@ -25,7 +25,7 @@ const FacilityCard = ({ data }: { data: TFacilityData }) => {
                     title={name}
                     description={<div>
                         <p>{`${description.slice(0, 25)}... more`}</p>
-                        <p className='text-secondary'>Price Per Hour: {pricePerHour} BDT</p>
+                        <p className='text-secondary mt-2'>Price Per Hour: {pricePerHour} BDT</p>
                     </div>}
                 />
             </Card>

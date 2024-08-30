@@ -2,8 +2,8 @@ import { TFacilityData } from "../../type";
 import { baseApi } from "./base-api";
 
 export type TGetAllFacilityQueryParams = {
-    name: string;
-    pricePerHour: string;
+    search: string;
+    pricePerHour?: string;
     page: any
 }
 
@@ -16,8 +16,8 @@ const facilityApi = baseApi.injectEndpoints({
                 const paramsObj: TGetAllFacilityQueryParams = { page: paramsArgs.page } as TGetAllFacilityQueryParams
 
                 // if name has a value add name in params
-                if (paramsArgs.name) {
-                    paramsObj.name = paramsArgs.name
+                if (paramsArgs.search) {
+                    paramsObj.search = paramsArgs.search
                 }
 
                 // if name has a value add name in params

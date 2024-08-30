@@ -51,7 +51,7 @@ const AddFacility = () => {
         } catch (error: any) {
             toast.error(error.message)
         } finally {
-            setLoading(!loading)
+            setLoading(loading => !loading)
         }
     }
 

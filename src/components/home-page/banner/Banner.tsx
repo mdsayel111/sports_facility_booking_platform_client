@@ -17,7 +17,7 @@ const Banner = () => {
 
                         <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
 
-                            <NavLink to={"/facility"} target="_blank"
+                            <NavLink to={"/facility"}
                                 className="inline-flex items-center justify-center w-full px-5 py-3 mb-2 mr-2 text-sm text-white bg-primary rounded-lg sm:w-auto focus:outline-none focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700    dark:hover:text-white font-bold">
                                 BOOK NOW
                             </NavLink>

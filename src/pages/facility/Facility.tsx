@@ -1,6 +1,6 @@
 import { Pagination, Select } from "antd";
 import Search, { SearchProps } from "antd/es/input/Search";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import FacilityCard from "../../components/shared/facility-card/FacilityCard";
 import Title from "../../components/shared/title/Title";
 import { useGetAllFacilityQuery } from "../../redux/api/facility-api";
@@ -9,9 +9,8 @@ import Loader from "../../components/shared/loader/Loader";
 
 const Facility = () => {
     // create params state for get all facility by filtering
-    const [params, setParams] = useState({
-        name: "",
-        pricePerHour: "asc",
+    const [params, setParams] = useState<any>({
+        search: "",
         page: 1
     })
 
@@ -19,7 +18,7 @@ const Facility = () => {
     const allFacility = data?.data?.data
 
     // handleSearch text
-    const onSearch: SearchProps['onSearch'] = (value) => setParams({ ...params, name: value });
+    const onSearch: ChangeEventHandler<HTMLInputElement> = (e) => setParams({ ...params, search: (e.target as any).value, page: 1 });
 
     // handlePagination function
     const handlePagination = (value: number) => {
@@ -28,27 +27,30 @@ const Facility = () => {
 
     // handle onchange
     const handleChange = (value: string) => {
-        setParams({ ...params, pricePerHour: value })
+        setParams({ ...params, pricePerHour: value, page: 1 })
     };
 
     // get meta from response
     const meta = data?.data?.meta
-
-    console.log(meta)
 
     return (
         <div className="my-8 min-h-[100vh]">
             <Title title="All Facility" />
             <div>
                 <div className="flex gap-4 flex-col lg:flex-row">
-                    <Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
+                    <Search placeholder="input search text" onChange={onSearch} style={{ width: 200 }} />
                     <Select
-                        defaultValue="Sort By Price"
+                        placeholder="FIlter By Price"
+                        // defaultValue="0"
                         style={{ width: 200 }}
                         onChange={handleChange}
                         options={[
-                            { value: 'asc', label: 'Low To High' },
-                            { value: 'desc', label: 'High TO Low' }
+                            { value: "100", label: '0-100' },
+                            { value: "200", label: '0-200' },
+                            { value: "300", label: '0-300' },
+                            { value: '400', label: '0-400' },
+                            { value: '500', label: '0-500' },
+                            { value: `${Number.MAX_SAFE_INTEGER}`, label: '500+' }
                         ]}
                     />
                 </div>
@@ -60,7 +62,7 @@ const Facility = () => {
             {
                 allFacility?.length === 0 && <h3 className="text-xl text-center mt-8">No Data Found</h3>
             }
-            {meta ? <Pagination onChange={handlePagination} align="center" defaultCurrent={meta.page} total={meta.pageNumber * 10} /> : <></>}
+            {meta ? <Pagination onChange={handlePagination} align="center" defaultCurrent={params.page} total={meta.pageNumber * 10} current={params.page} /> : <></>}
         </div>
     );
 };
